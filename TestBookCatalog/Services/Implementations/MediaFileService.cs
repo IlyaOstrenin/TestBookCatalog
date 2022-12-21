@@ -30,6 +30,9 @@ namespace TestBookCatalog.Services.Implementations
             var mediaFile = new MediaFile();
             mediaFile.Path = Path.Combine(Directory.GetCurrentDirectory(), "MediaFiles", $"{mediaFile.Id}{fileExtension}");
 
+            if (!Directory.Exists(Path.GetDirectoryName(mediaFile.Path)))
+                Directory.CreateDirectory(Path.GetDirectoryName(mediaFile.Path));
+
             using (var fileStream = new FileStream(mediaFile.Path, FileMode.Create))
                 await file.CopyToAsync(fileStream);
 
