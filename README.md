@@ -3,10 +3,10 @@
 Добрый день!
 Это реализация моего тестового задание "Книжный каталог".
 
-Проект создан на платформе .NET5
-REST
-ORM EntityFrameworkCore
-DB PostgreSQL
+- Проект создан на платформе .NET5
+- REST
+- ORM EntityFrameworkCore
+- DB PostgreSQL
 
 Возможности API:
 - К проекту подключена OpenAPI с необходимыми комментариями.
