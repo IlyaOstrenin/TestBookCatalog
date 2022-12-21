@@ -26,7 +26,7 @@ namespace TestBookCatalog
             Category category1 = new Category { Id = 1, Name = "Детектив" };
             Category category2 = new Category { Id = 2, Name = "Наука" };
             Category category3 = new Category { Id = 3, Name = "Фантастика" };
-            Category category4 = new Category { Id = 3, Name = "Роман" };
+            Category category4 = new Category { Id = 4, Name = "Роман" };
 
             modelBuilder.Entity<Role>().HasData(new Role[] { adminRole, userRole });
             modelBuilder.Entity<User>().HasData(new User[] { adminUser });
