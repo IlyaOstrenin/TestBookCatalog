@@ -8,21 +8,22 @@ namespace TestBookCatalog.Repositories.Implementations
 {
     public class MediaFileRepository : IMediaFileRepository
     {
+        private readonly TestBookCatalogDbContext _context;
+
+        public MediaFileRepository(TestBookCatalogDbContext context)
+        {
+            _context = context;
+        }
+
         public async Task<MediaFile> GetByIdAsync(Guid fileId)
         {
-            using (var _context = new TestBookCatalogDbContext())
-            {
-                return await _context.MediaFiles.FirstOrDefaultAsync(x => x.Id == fileId);
-            }
+            return await _context.MediaFiles.FirstOrDefaultAsync(x => x.Id == fileId);
         }
 
         public async Task SaveAsync(MediaFile file)
         {
-            using (var _context = new TestBookCatalogDbContext())
-            {
-                await _context.MediaFiles.AddAsync(file);
-                await _context.SaveChangesAsync();
-            }
+            await _context.MediaFiles.AddAsync(file);
+            await _context.SaveChangesAsync();
         }
     }
 }

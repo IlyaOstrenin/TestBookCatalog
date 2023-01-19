@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using System;
-using System.IO;
 using TestBookCatalog.Models;
 
 namespace TestBookCatalog
 {
     public class TestBookCatalogDbContext : DbContext
     {
+        public TestBookCatalogDbContext(DbContextOptions options) : base(options) { }
+
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Book> Books { get; set; }
@@ -36,16 +36,6 @@ namespace TestBookCatalog
             modelBuilder.Entity<Favorite>().HasKey(c => new { c.BookId, c.UserId });
 
             base.OnModelCreating(modelBuilder);
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var builder = new ConfigurationBuilder();
-            builder.SetBasePath(Directory.GetCurrentDirectory());
-            builder.AddJsonFile($"appsettings.Development.json");
-            var config = builder.Build();
-
-            optionsBuilder.UseNpgsql(config.GetConnectionString("Db"));
         }
     }
 }
